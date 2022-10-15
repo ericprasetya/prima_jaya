@@ -2,6 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:prima_jaya/detail_page.dart';
 import 'package:prima_jaya/model/Product.dart';
 
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            if (constraints.maxWidth <= 600) {
+              return HomePage(
+                gridCount: 2,
+              );
+            } else if (constraints.maxWidth <= 1200) {
+              return HomePage(gridCount: 4);
+            } else {
+              return HomePage(gridCount: 6);
+            }
+          },
+        ));
+  }
+}
+
 class HomePage extends StatefulWidget {
   final int gridCount;
   const HomePage({Key? key, required this.gridCount}) : super(key: key);
@@ -122,4 +144,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-

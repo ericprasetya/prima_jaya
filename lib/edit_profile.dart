@@ -12,7 +12,7 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePage extends State<EditProfilePage> {
   String editedField;
   _EditProfilePage({required this.editedField});
-  String initialVal(){
+  String initialVal() {
     if (editedField == "Name") {
       return user.name;
     } else if (editedField == "Email") {
@@ -21,7 +21,7 @@ class _EditProfilePage extends State<EditProfilePage> {
       return user.phone;
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,7 +30,7 @@ class _EditProfilePage extends State<EditProfilePage> {
           title: Row(
             children: [
               Text(
-                'Ubah $editedField',
+                'Edit $editedField',
                 style: TextStyle(color: Colors.black),
               ),
             ],
@@ -38,38 +38,45 @@ class _EditProfilePage extends State<EditProfilePage> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           foregroundColor: Colors.black,
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () => Navigator.pop(context, 'refresh')),
         ),
-        body: Column(
-          children: [
-            TextFormField(
-              initialValue: initialVal(),
-              decoration: InputDecoration(
-                hintText: 'Edit your ${editedField} here...',
-                labelText: 'Your ${editedField}',
+        body: Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              TextFormField(
+                initialValue: initialVal(),
+                decoration: InputDecoration(
+                  hintText: 'Edit your  here...',
+                  labelText: 'Your ',
+                ),
+                onChanged: (String value) {
+                  setState(() {
+                    if (editedField == "Name") {
+                      user.name = value;
+                    } else if (editedField == "Email") {
+                      user.email = value;
+                    } else {
+                      user.phone = value;
+                    }
+                  });
+                },
               ),
-              onChanged: (String value) {
-                setState(() {
-                  if (editedField == "Name") {
-                    user.name = value;
-                  } else if (editedField == "Email") {
-                    user.email = value;
-                  } else {
-                    user.phone = value;
-                  }
-                });
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Submit'),
-              onPressed: () {
-                Navigator.pop(context, 'refresh');
-              },
-            )
-          ],
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                child: const Text('Submit'),
+                onPressed: () {
+                  Navigator.pop(context, 'refresh');
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
   }
-
-  
 }

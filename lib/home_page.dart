@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:prima_jaya/detail_page.dart';
 import 'package:prima_jaya/model/Product.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,31 +11,31 @@ class HomeScreen extends StatelessWidget {
         body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             if (constraints.maxWidth <= 600) {
-              return HomePage(
+              return HomePageList(
                 gridCount: 2,
               );
             } else if (constraints.maxWidth <= 1200) {
-              return HomePage(gridCount: 4);
+              return HomePageList(gridCount: 4);
             } else {
-              return HomePage(gridCount: 6);
+              return HomePageList(gridCount: 6);
             }
           },
         ));
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomePageList extends StatefulWidget {
   final int gridCount;
-  const HomePage({Key? key, required this.gridCount}) : super(key: key);
+  const HomePageList({Key? key, required this.gridCount}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState(gridCount: gridCount);
+  _HomePageListState createState() => _HomePageListState(gridCount: gridCount);
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageListState extends State<HomePageList> {
   int gridCount;
   String selectedCategory = "all";
-  _HomePageState({required this.gridCount});
+  _HomePageListState({required this.gridCount});
   List<Product> productList = products;
 
   void updateProduct() {

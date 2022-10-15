@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:prima_jaya/edit_profile.dart';
 import 'package:prima_jaya/model/user.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth <= 800) {
-          return ProfilePage();
+          return ProfilePageMobile();
         } else {
           return ProfilePageWeb();
         }
@@ -18,14 +18,14 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class ProfilePageMobile extends StatefulWidget {
+  const ProfilePageMobile({Key? key}) : super(key: key);
 
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  _ProfilePageMobileState createState() => _ProfilePageMobileState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfilePageMobileState extends State<ProfilePageMobile> {
   void updateData() {
     setState(() {});
   }
